@@ -39,7 +39,8 @@ public class DiscussionActivity extends ActionBarActivity {
         String username = FeelGood.getLoginName();
         String entry = text.getText().toString();
         String discussionTopic = CountrySelection.getSelectedTopic();
-        Message m = new Message(username, entry, discussionTopic);
+        Message m = new Message(1,"",username, entry, discussionTopic);
         MessagesBroker.addMessage(m);
+        text.setText(username + " " + entry + " " + discussionTopic);
     }
 }

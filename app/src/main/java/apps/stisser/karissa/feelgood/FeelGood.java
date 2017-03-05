@@ -29,7 +29,17 @@ public class FeelGood extends ActionBarActivity {
         loginBtn = (Button)findViewById(R.id.loginButton);
         passwordText = (EditText)findViewById(R.id.pswdEditTxt);
         passwordText.setTransformationMethod(new PasswordTransformationMethod());
-        MessagesBroker.pollMessages();
+        Thread thread = new Thread(new Runnable(){
+           @Override
+            public void run(){
+               try{
+                   MessagesBroker.pollMessages();
+               }catch(Exception e){
+                   e.printStackTrace();
+               }
+           }
+        });
+        thread.start();
     }
 
     public void loginClicked(View view){
