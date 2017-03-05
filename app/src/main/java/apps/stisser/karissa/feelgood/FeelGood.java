@@ -27,7 +27,7 @@ public class FeelGood extends ActionBarActivity {
     }
 
     public void loginClicked(View view){
-        Intent intent = new Intent(this, TopicsActivity.class);
+        Intent intent = new Intent(this, CountrySelection.class);
         startActivity(intent);
     }
 
