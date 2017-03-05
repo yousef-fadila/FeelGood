@@ -4,6 +4,8 @@ package apps.stisser.karissa.feelgood;
  * Created by yfadila on 3/4/2017.
  */
 
+import android.os.Handler;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -14,13 +16,40 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MessagesBroker {
+
+    public interface MessageCallBack {
+        void onMessage(Message message);
+    }
+
+    public static Map<String, MessageCallBack> callBackMap = new HashMap<>();
+
+    public static List<Message> getMessages(String chatRoom, MessageCallBack callBack){
+        if (callBack !=null) {
+            callBackMap.put(chatRoom, callBack);
+        }
+        List<Message> msgs = new ArrayList<>();
+        for(int i=0; i< allMessages.size(); i++) {
+            //(int id, String time, String from, String content, String topic)
+            if (allMessages.get(i).getAsJsonArray().get(2).toString().replace("\"","").equals(chatRoom)) {
+                Message e = new Message(allMessages.get(i).getAsJsonArray());
+                msgs.add(e);
+            }
+        }
+        return  msgs;
+    }
+
     private static int lastId = 0;
     private static final String BASE_URL = "http://fadila.net/feelgood/index.php/messages?filter=id,gt,";
     private static Gson gson = new Gson();
+    private static JsonArray allMessages = new JsonArray();
 
-    public static JsonArray test() {
+    public static JsonArray fetchMessages() {
         JsonArray records = null;
 
         try {
@@ -40,19 +69,16 @@ public class MessagesBroker {
             String output = br.readLine();
             JsonElement jelem = gson.fromJson(output, JsonElement.class);
             records = jelem.getAsJsonObject().getAsJsonObject("messages").getAsJsonArray("records");
-//            System.out.println("string: " + records);
-//            System.out.println("string.size " + records.size());
-
             if (records.size() > 0)
             {
-             lastId = Integer.parseInt(records.get(records.size() - 1).getAsJsonArray().get(0).toString());
+                lastId = Integer.parseInt(records.get(records.size() - 1).getAsJsonArray().get(0).toString());
             }
 
             conn.disconnect();
         } catch (MalformedURLException e) {
 
             e.printStackTrace();
-            
+
 
         } catch (IOException e) {
 
@@ -60,9 +86,34 @@ public class MessagesBroker {
         }
         return records;
     }
+    // bad practice, This is for 1st POC stage only.
+    public static void pollMessages(){
+        final Handler h = new Handler();
+        final int delay = 2000; //milliseconds
 
-    public static void main(String[] args) {
-        test();
-        System.out.println(lastId);
+        h.postDelayed(new Runnable(){
+            public void run(){
+                JsonArray newMessgaes = fetchMessages();
+                if (newMessgaes.size() != 0) {
+                    allMessages.addAll(newMessgaes);
+                    for (int i=0; i<newMessgaes.size(); i++) {
+                        String chatroom = newMessgaes.get(i).getAsJsonArray().get(2).toString();
+                        if (callBackMap.get(chatroom) != null)
+                            callBackMap.get(chatroom).onMessage(new Message(newMessgaes.get(i).getAsJsonArray()));
+                    }
+                }
+                h.postDelayed(this, delay);
+            }
+        }, delay);
     }
+
+//    public static void main(String[] args) throws InterruptedException {
+//        allMessages.addAll(fetchMessages());
+//        List<Message> messages = getMessages("group suicide",null);
+//        System.out.println(lastId);
+//        for (int i=0; i < messages.size(); i++){
+//            System.out.println("from: " + messages.get(i).from + "\n" + messages.get(i).content);
+//        }
+//       // pollMessages();
+//    }
 }
