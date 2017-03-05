@@ -139,6 +139,19 @@ public class MessagesBroker {
         },delay,delay, TimeUnit.MILLISECONDS);
     }
 
+    public static String getQuestionByID(int id){
+
+        return "question";
+    }
+
+    public static void submitQuestion(Message m){
+
+    }
+
+    public static void submitAnswer(Message m){
+
+    }
+
     public static void main(String[] args) throws InterruptedException {
         pollMessages();
         addMessageAsync(new Message(943,"","vvv","slama","lilya"));

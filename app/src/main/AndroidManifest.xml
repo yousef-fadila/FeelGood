@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="apps.stisser.karissa.feelgood" >
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -17,7 +18,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".CountrySelection" android:screenOrientation="portrait" />
-        <activity android:name="TopicsActivity" android:screenOrientation="portrait" />
+        <activity android:name=".DiscussionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".AskExpert" android:screenOrientation="portrait" />
+        <activity android:name=".ExpertResponse" android:screenOrientation="portrait" />
     </application>
 
 </manifest>
