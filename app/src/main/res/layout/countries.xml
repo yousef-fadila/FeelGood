@@ -22,5 +22,145 @@
         android:prompt="@string/country_prompt"
         android:entries="@array/country_arrays"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/RadioGroup1"
+        android:orientation="vertical"
+        android:layout_below="@+id/diabetesCheckBox"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What to Eat"
+            android:id="@+id/whatToEatRdBtn"
+            android:checked="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Stay Active"
+            android:id="@+id/stayActiveRdBtn"
+            android:checked="false"
+            android:layout_below="@+id/whatToEatRdBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Medications"
+            android:id="@+id/medicationsRdBtn"
+            android:checked="false"
+            android:layout_below="@+id/stayActiveRdBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Numbers"
+            android:id="@+id/myNumbersRdBtn"
+            android:checked="false"
+            android:layout_below="@+id/medicationsRdBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Family &amp; Social Support"
+            android:id="@+id/familySocialRdBtn"
+            android:checked="false"
+            android:layout_below="@+id/myNumbersRdBtn"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complications"
+            android:id="@+id/complicationsRdBtn"
+            android:checked="false"
+            android:layout_above="@+id/whatToEatRdBtn"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Devices"
+            android:id="@+id/devicesRdBtn"
+            android:checked="false"
+            android:layout_below="@+id/complicationsRdBtn"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Diabetes Expenses"
+            android:id="@+id/diabetesExpensesRdBtn"
+            android:checked="false"
+            android:layout_below="@+id/devicesRdBtn"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oral Health &amp; Hygiene"
+            android:id="@+id/oralHealthRdBtn"
+            android:checked="false"
+            android:layout_below="@+id/diabetesExpensesRdBtn"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Children"
+            android:id="@+id/childrenRdBtn"
+            android:layout_below="@+id/oralHealthRdBtn"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pregnancy"
+            android:id="@+id/pregnancyRdBtn"
+            android:layout_below="@+id/childrenRdBtn"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:checked="false" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join Discussion"
+        android:id="@+id/discussionBtn"
+        android:layout_above="@+id/askExpertBtn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ask the Expert"
+        android:id="@+id/askExpertBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
 </RelativeLayout>

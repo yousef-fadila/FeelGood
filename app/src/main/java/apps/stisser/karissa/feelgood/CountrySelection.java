@@ -24,7 +24,7 @@ public class CountrySelection extends ActionBarActivity implements AdapterView.O
     }
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
         selectedCountry = countryOptions[pos];
-        
+
     }
 
     public void onNothingSelected(AdapterView<?> parent){
