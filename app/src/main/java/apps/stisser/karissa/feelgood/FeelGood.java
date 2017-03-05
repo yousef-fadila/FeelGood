@@ -20,6 +20,7 @@ public class FeelGood extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MessagesBroker.pollMessages();
         setContentView(R.layout.activity_feel_good);
         usernameLbl = (TextView)findViewById(R.id.username);
         usernameTxt = (EditText)findViewById(R.id.userTxt);
