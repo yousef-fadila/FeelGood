@@ -29,7 +29,7 @@ public class Message implements Comparable<Message>{
         this.content = content;
         this.topic = topic;
     }
-    
+
     public Message(JsonArray jsonArray) {
         this(Integer.parseInt(jsonArray.get(0).toString()), jsonArray.get(1).toString().replace("\"",""),  jsonArray.get(3).toString().replace("\"",""),
                 jsonArray.get(4).toString().replace("\"",""),    jsonArray.get(2).toString().replace("\"",""));
