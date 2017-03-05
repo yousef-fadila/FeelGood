@@ -47,4 +47,8 @@ public class Message implements Comparable<Message>{
     public int compareTo(@NonNull Message message) {
         return this.id - message.id;
     }
+
+    public String getStringToPost() {
+        return "{\"chatroom\":\""+topic+"\",\"from\":\""+from+"\",\"content\":\""+content+"\"}";
+    }
 }
