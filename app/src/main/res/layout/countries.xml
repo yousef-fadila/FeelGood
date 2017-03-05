@@ -151,7 +151,8 @@
         android:id="@+id/discussionBtn"
         android:layout_above="@+id/askExpertBtn"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="discussionClicked"/>
 
     <Button
         android:layout_width="wrap_content"

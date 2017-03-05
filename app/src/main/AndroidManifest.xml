@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CountrySelection" android:screenOrientation="portrait" />
+        <activity android:name=".DiscussionActivity" android:screenOrientation="portrait" />
     </application>
 
 </manifest>

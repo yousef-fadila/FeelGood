@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 
 /**
@@ -13,7 +14,9 @@ import android.widget.Spinner;
 public class CountrySelection extends ActionBarActivity implements AdapterView.OnItemSelectedListener {
     public static String selectedCountry = "Lebanon";
     public static Spinner spinner;
+    public static Button discussionBtn;
     String[] countryOptions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +24,7 @@ public class CountrySelection extends ActionBarActivity implements AdapterView.O
         countryOptions = getResources().getStringArray(R.array.country_arrays);
         spinner = (Spinner)findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
+        discussionBtn = (Button)findViewById(R.id.discussionBtn);
     }
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
         selectedCountry = countryOptions[pos];
@@ -33,5 +37,10 @@ public class CountrySelection extends ActionBarActivity implements AdapterView.O
 
     public static String getSelectedCountry(){
         return selectedCountry;
+    }
+
+    public void discussionClicked(View view){
+        Intent intent = new Intent(this, DiscussionActivity.class);
+        startActivity(intent);
     }
 }
