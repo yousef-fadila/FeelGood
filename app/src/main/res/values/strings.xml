@@ -3,4 +3,28 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="country_prompt">Choose your country</string>
+
+    <string-array name="country_arrays">
+        <item>Lebanon</item>
+        <item>Jordan</item>
+        <item>Palestine</item>
+        <item>Syria</item>
+        <item>Iraq</item>
+        <item>Bahrain</item>
+        <item>Kuwait</item>
+        <item>UAE</item>
+        <item>Saudi Arabia</item>
+        <item>Yemen</item>
+        <item>Oman</item>
+        <item>Egypt</item>
+        <item>Tunisia</item>
+        <item>Algeria</item>
+        <item>Morocco</item>
+        <item>Sudan</item>
+        <item>South Sudan</item>
+        <item>Qatar</item>
+        <item>Mauritania</item>
+    </string-array>
 </resources>
