@@ -51,7 +51,7 @@ public class MessagesBroker {
     private static final String BASE_URL = "http://fadila.net/feelgood/index.php/messages";
     private static Gson gson = new Gson();
     private static JsonArray allMessages = new JsonArray();
-
+    private static final Handler h = new Handler();
     public static JsonArray fetchMessages() {
         JsonArray records = null;
 
@@ -113,10 +113,16 @@ public class MessagesBroker {
         }
     }
 
+    public static void addMessageSync(final Message msg) {
+        h.post(new Runnable() {
+            @Override
+            public void run() {
+                addMessage(msg);
+            }
+        });
+    }
     public static void pollMessages(){
-        final Handler h = new Handler();
         final int delay = 2000; //milliseconds
-
         h.postDelayed(new Runnable(){
             public void run(){
                 JsonArray newMessgaes = fetchMessages();
@@ -134,7 +140,7 @@ public class MessagesBroker {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        addMessage(new Message(943,"","yousef","slama","lilya"));
+        addMessage(new Message(943,"","111111111112","slama","lilya"));
 
     }
 }
