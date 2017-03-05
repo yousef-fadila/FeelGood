@@ -4,13 +4,9 @@ package apps.stisser.karissa.feelgood;
  * Created by yfadila on 3/4/2017.
  */
 
-import android.os.Handler;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,6 +19,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class MessagesBroker {
 
@@ -51,7 +49,8 @@ public class MessagesBroker {
     private static final String BASE_URL = "http://fadila.net/feelgood/index.php/messages";
     private static Gson gson = new Gson();
     private static JsonArray allMessages = new JsonArray();
-    private static final Handler h = new Handler();
+    private static ScheduledThreadPoolExecutor executor = 	new ScheduledThreadPoolExecutor(2);
+   // private static final Handler h = new Handler();
     public static JsonArray fetchMessages() {
         JsonArray records = null;
 
@@ -113,17 +112,18 @@ public class MessagesBroker {
         }
     }
 
-    public static void addMessageSync(final Message msg) {
-        h.post(new Runnable() {
+    public static void addMessageAsync(final Message msg) {
+        executor.execute(new Runnable() {
             @Override
             public void run() {
                 addMessage(msg);
             }
         });
     }
+
     public static void pollMessages(){
         final int delay = 2000; //milliseconds
-        h.postDelayed(new Runnable(){
+       executor.scheduleAtFixedRate(new Runnable(){
             public void run(){
                 JsonArray newMessgaes = fetchMessages();
                 if (newMessgaes.size() != 0) {
@@ -134,13 +134,13 @@ public class MessagesBroker {
                             callBackMap.get(chatroom).onMessage(new Message(newMessgaes.get(i).getAsJsonArray()));
                     }
                 }
-                h.postDelayed(this, delay);
+                //h.postDelayed(this, delay);
             }
-        }, delay);
+        },delay,delay, TimeUnit.MILLISECONDS);
     }
 
     public static void main(String[] args) throws InterruptedException {
-        addMessage(new Message(943,"","111111111112","slama","lilya"));
-
+        pollMessages();
+        addMessageAsync(new Message(943,"","vvv","slama","lilya"));
     }
 }
