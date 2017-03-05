@@ -3,6 +3,7 @@ package apps.stisser.karissa.feelgood;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,20 +17,30 @@ public class FeelGood extends ActionBarActivity {
     public static TextView usernameLbl;
     public static EditText usernameTxt;
     public static Button loginBtn;
+    public static String loginName = "";
+    public static EditText passwordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MessagesBroker.pollMessages();
         setContentView(R.layout.activity_feel_good);
         usernameLbl = (TextView)findViewById(R.id.username);
         usernameTxt = (EditText)findViewById(R.id.userTxt);
         loginBtn = (Button)findViewById(R.id.loginButton);
+        passwordText = (EditText)findViewById(R.id.pswdEditTxt);
+        passwordText.setTransformationMethod(new PasswordTransformationMethod());
+        MessagesBroker.pollMessages();
     }
 
     public void loginClicked(View view){
-        Intent intent = new Intent(this, CountrySelection.class);
-        startActivity(intent);
+        loginName = usernameTxt.getText().toString();
+        if(loginName.contains("doctor".toLowerCase())){
+            Intent intent = new Intent(this, ExpertResponse.class);
+            startActivity(intent);
+        }else {
+            Intent intent = new Intent(this, CountrySelection.class);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -54,5 +65,8 @@ public class FeelGood extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    public static String getLoginName(){
+        return loginName;
+    }
 }
+

@@ -14,6 +14,7 @@ public class Message implements Comparable<Message>{
     public String from;
     public String content;
     public String topic;
+    public String answer;
 
     public Message(int id, String time, String from, String content, String topic) {
         this.id = id;
@@ -28,6 +29,13 @@ public class Message implements Comparable<Message>{
         this.from = from;
         this.content = content;
         this.topic = topic;
+    }
+
+    public Message(String from, String content, String topic, String answer){
+        this.from = from;
+        this.content = content;
+        this.topic = topic;
+        this.answer = answer;
     }
 
     public Message(JsonArray jsonArray) {
@@ -57,5 +65,15 @@ public class Message implements Comparable<Message>{
 
     public String getStringToPost() {
         return "{\"chatroom\":\""+topic+"\",\"from\":\""+from+"\",\"content\":\""+content+"\"}";
+    }
+
+    @Override
+    public String toString(){
+        if(this.topic == "Ask the Expert")
+        {
+            return ("ID: " + this.id + " From: " + this.from + "\n" + this.time + "\n" + this.content + "\n" + this.answer);
+        }else {
+            return (this.from + "\n" + this.time + "\n" + this.content);
+        }
     }
 }

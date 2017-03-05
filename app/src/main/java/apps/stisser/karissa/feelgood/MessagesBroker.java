@@ -133,6 +133,19 @@ public class MessagesBroker {
         }, delay);
     }
 
+    public static String getQuestionByID(int id){
+
+        return "question";
+    }
+
+    public static void submitQuestion(Message m){
+
+    }
+
+    public static void submitAnswer(Message m){
+
+    }
+
     public static void main(String[] args) throws InterruptedException {
         addMessage(new Message(943,"","yousef","slama","lilya"));
 

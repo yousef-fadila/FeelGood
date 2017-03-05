@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:text="Username"
         android:id="@+id/username"
-        android:layout_alignBottom="@+id/userTxt"
+        android:layout_alignTop="@+id/userTxt"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -19,12 +19,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/userTxt"
         android:gravity="center"
-        android:layout_above="@+id/loginButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="75dp"
-        android:layout_toRightOf="@+id/username"
-        android:layout_toEndOf="@+id/username" />
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button"
+        android:layout_toEndOf="@+id/button" />
 
     <Button
         android:layout_width="wrap_content"
@@ -44,5 +43,27 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:id="@+id/pswdTxt"
+        android:layout_below="@+id/userTxt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pswdEditTxt"
+        android:gravity="center"
+        android:inputType="textPassword"
+        android:password="true"
+        android:layout_alignTop="@+id/pswdTxt"
+        android:layout_alignLeft="@+id/userTxt"
+        android:layout_alignStart="@+id/userTxt"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
