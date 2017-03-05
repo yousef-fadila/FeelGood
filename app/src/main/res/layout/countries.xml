@@ -3,6 +3,7 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/bgblue"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".FeelGood">
 
     <CheckBox
@@ -149,20 +150,23 @@
         android:layout_height="wrap_content"
         android:text="Join Discussion"
         android:id="@+id/discussionBtn"
-        android:layout_above="@+id/askExpertBtn"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="discussionClicked"/>
+        style="@style/buttonStyle"
+        android:onClick="discussionClicked"
+        android:layout_below="@+id/RadioGroup1"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ask the Expert"
         android:id="@+id/askExpertBtn"
-        android:layout_alignParentBottom="true"
+        style="@style/buttonStyle"
+        android:onClick="askExpertClicked"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:onClick="askExpertClicked"/>
+        android:layout_toRightOf="@+id/discussionBtn"
+        android:layout_toEndOf="@+id/discussionBtn" />
 
 
 </RelativeLayout>

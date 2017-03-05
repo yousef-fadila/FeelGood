@@ -27,4 +27,6 @@
         <item>Qatar</item>
         <item>Mauritania</item>
     </string-array>
+
+    <color name="bgblue">#ADD8E6</color>
 </resources>
